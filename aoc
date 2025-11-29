@@ -1,41 +1,40 @@
-#!/bin/sh
+#!/usr/bin/env fish
 
-if [ -f .env ]; then
-    . ./.env
+if test -f .env
+    source ./.env
 else
     echo "Error: .env file not found."
     exit 1
-fi
+end
 
-if [ "$#" -eq 0 ]; then
-    CURRENT_YEAR=$(TZ="America/New_York" date +%Y)
-    CURRENT_DAY=$(TZ="America/New_York" date +%-d)
-    if [ "$(TZ="America/New_York" date +%m)" -ne 12 ] || [ "${CURRENT_DAY}" -lt 1 ] || [ "${CURRENT_DAY}" -gt 25 ]; then
+if test (count $argv) -eq 0
+    set CURRENT_YEAR (env TZ="America/New_York" date +%Y)
+    set CURRENT_DAY (env TZ="America/New_York" date +%-d)
+    set CURRENT_MONTH (env TZ="America/New_York" date +%m)
+    if test $CURRENT_MONTH -ne 12; or test $CURRENT_DAY -lt 1; or test $CURRENT_DAY -gt 25
         echo "Advent of Code has not started or the current day is not valid."
         exit 1
-    fi
+    end
 else
-    CURRENT_YEAR="$1"
-    CURRENT_DAY="$2"
-fi
+    set CURRENT_YEAR $argv[1]
+    set CURRENT_DAY $argv[2]
+end
 
-FOLDER="${CURRENT_YEAR}/${CURRENT_DAY}"
-mkdir -p "${FOLDER}"
-cd "$FOLDER" || {
+set FOLDER "$CURRENT_YEAR/$CURRENT_DAY"
+mkdir -p $FOLDER
+cd $FOLDER; or begin
     echo "Error: Failed to change directory."
     exit 1
-}
+end
 
-URL="https://adventofcode.com/${CURRENT_YEAR}/day/${CURRENT_DAY}/input"
-if curl -b "session=${SESSION_COOKIE}" "${URL}" -o "input"; then
+set URL "https://adventofcode.com/$CURRENT_YEAR/day/$CURRENT_DAY/input"
+if curl -b "session=$SESSION_COOKIE" $URL -o "input"
     echo "Input downloaded successfully."
 else
     echo "Failed to download input. Please check your session cookie and try again."
     exit 1
-fi
+end
 
-if [ ! -f "s.js" ]; then
+if not test -f "s.js"
     cat ../../template.js >s.js
-fi
-
-nv s.js
+end
