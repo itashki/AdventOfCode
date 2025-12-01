@@ -21,7 +21,7 @@ function part1(input) {
     } else if (command.command === "L") {
       point -= command.value;
       if (point < 0) {
-        point = (100 + point % 100) % 100;
+        point = (point % 100 + 100) % 100;
       }
     }
     if (point === 0) {
@@ -38,21 +38,20 @@ function part2(input) {
   let answer = 0;
   for (const command of input) {
     if (command.command === "R") {
-      for (let i = 0; i < command.value; i++) {
-        point += 1;
-        if (point === 100) {
-          answer += 1;
-          point = 0;
-        }
-      }
+      point += command.value;
+      answer += Math.floor(point / 100);
+      point %= 100;
     } else if (command.command === "L") {
-      for (let i = 0; i < command.value; i++) {
-        point -= 1;
-        if (point === 0) {
+      const wasOnZero = point === 0;
+      point -= command.value;
+      if (point === 0) {
+        answer += 1;
+      } else if (point < 0) {
+        if (!wasOnZero) {
           answer += 1;
-        } else if (point === -1) {
-          point = 99;
         }
+        answer += Math.floor(point / -100);
+        point = (point % 100 + 100) % 100;
       }
     }
   }
