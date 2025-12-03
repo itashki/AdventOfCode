@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-const input = readFileSync("./bigboy.txt", "utf-8").trim();
+const input = readFileSync("./input", "utf-8").trim();
 
 /** @param {string} input */
 function parseInput(input) {
