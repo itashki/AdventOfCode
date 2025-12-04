@@ -10,17 +10,12 @@ function parseInput(input) {
   });
 }
 
-/** @param {number} n */
-function isRepeatedTwice(n) {
-  return /^(\d+)\1$/.test(n.toString());
-}
-
 /** @param {ReturnType<typeof parseInput>} input */
 function part1(input) {
   let count = 0;
   for (const range of input) {
     for (let n = range.start; n <= range.end; n++) {
-      if (isRepeatedTwice(n)) {
+      if (/^(\d+)\1$/.test(n.toString())) {
         count += n;
       }
     }
@@ -28,17 +23,12 @@ function part1(input) {
   return count;
 }
 
-/** @param {number} n */
-function isRepeated(n) {
-  return /^(\d+)\1+$/.test(n.toString());
-}
-
 /** @param {ReturnType<typeof parseInput>} input */
 function part2(input) {
   let count = 0;
   for (const range of input) {
     for (let n = range.start; n <= range.end; n++) {
-      if (isRepeated(n)) {
+      if (/^(\d+)\1+$/.test(n.toString())) {
         count += n;
       }
     }
