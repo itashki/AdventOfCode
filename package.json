@@ -4,10 +4,10 @@
   "author": "KTheRD",
   "license": "MIT",
   "type": "module",
-  "off": {
-    "canvas": "^3.0.0-rc3"
-  },
   "dependencies": {
+    "canvas": "^3.2.0"
+  },
+  "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
