@@ -7,10 +7,10 @@ function parseInput(input) {
   return input.split("\n").map((line) => line.split(""));
 }
 
-/** 
- * @param {ReturnType<typeof parseInput>} input 
- * @param {{row:number, col:number}} point 
-**/
+/**
+ * @param {ReturnType<typeof parseInput>} input
+ * @param {{ row: number; col: number }} point
+ */
 function countNeighbors(input, point) {
   const directions = [
     [-1, -1],

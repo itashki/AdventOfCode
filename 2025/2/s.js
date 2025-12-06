@@ -4,7 +4,7 @@ const input = readFileSync("./input", "utf-8").trim();
 
 /** @param {string} input */
 function parseInput(input) {
-  return input.split(",").map(rangeS => {
+  return input.split(",").map((rangeS) => {
     const [start, end] = rangeS.split("-").map(Number);
     return { start, end };
   });

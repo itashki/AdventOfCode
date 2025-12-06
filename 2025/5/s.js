@@ -6,12 +6,12 @@ const input = readFileSync("./input", "utf-8").trim();
 function parseInput(input) {
   const [ranges, ids] = input.split("\n\n");
   return {
-    ranges: ranges.split("\n").map(line => {
+    ranges: ranges.split("\n").map((line) => {
       const [start, end] = line.split("-").map(Number);
       return { start, end };
     }),
     ids: ids.split("\n").map(Number),
-  }
+  };
 }
 
 /** @param {ReturnType<typeof parseInput>} input */
@@ -23,14 +23,14 @@ function part1(input) {
         count++;
         break;
       }
-    } 
+    }
   }
   return count;
 }
 
 /** @param {ReturnType<typeof parseInput>} input */
 function part2(input) {
-  let bigRange = []
+  let bigRange = [];
   for (const range of input.ranges) {
     const newBigRange = [];
     if (bigRange.length === 0) {
@@ -55,7 +55,7 @@ function part2(input) {
       const newRange = {
         start: Math.min(bigRange[i].start, range.start),
         end: Math.max(bigRange[i].end, range.end),
-      }
+      };
       while (i + 1 < bigRange.length && bigRange[i + 1].start <= newRange.end) {
         newRange.end = Math.max(newRange.end, bigRange[i + 1].end);
         i++;

@@ -36,11 +36,11 @@ function part1(input) {
 
 /** @param {ReturnType<typeof parseInput>} input */
 function part2(input) {
-    let answer = 0;
+  let answer = 0;
   for (const bank of input) {
     let prevIndex = -1;
     const maxDigits = Array(12).fill(0);
-    for (let digit = 1; digit <= 12; digit++){
+    for (let digit = 1; digit <= 12; digit++) {
       let maxDigit = bank[prevIndex + 1];
       let maxDigitIndex = prevIndex + 1;
       for (let i = prevIndex + 2; i < bank.length - (12 - digit); i++) {

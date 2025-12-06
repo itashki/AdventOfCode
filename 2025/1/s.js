@@ -21,13 +21,12 @@ function part1(input) {
     } else if (command.command === "L") {
       point -= command.value;
       if (point < 0) {
-        point = (point % 100 + 100) % 100;
+        point = ((point % 100) + 100) % 100;
       }
     }
     if (point === 0) {
       answer += 1;
     }
-
   }
   return answer;
 }
@@ -51,7 +50,7 @@ function part2(input) {
           answer += 1;
         }
         answer += Math.floor(point / -100);
-        point = (point % 100 + 100) % 100;
+        point = ((point % 100) + 100) % 100;
       }
     }
   }
