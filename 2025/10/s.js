@@ -60,26 +60,15 @@ function part1(input) {
   return sum;
 }
 
-/**
- * @param {number[]} state
- * @param {number[]} button
- */
-function pressJoltage(state, button) {
-  const newState = [...state];
-  for (const idx of button) {
-    newState[idx]++;
-  }
-  return newState;
-}
-
 /** @param {ReturnType<typeof parseInput>} input */
 async function part2(input) {
-  let sum = 0;
-  for (const { joltage, buttons } of input) {
-    const { Context } = await init();
-    const Z3 = Context("main");
-    const { Int, Optimize } = Z3;
+  const { Context } = await init();
+  const Z3 = Context("main");
+  const { Int, Optimize } = Z3;
 
+  let sum = 0;
+
+  for (const { joltage, buttons } of input) {
     const vars = buttons.map((_, i) => Int.const(`x${i}`));
     const opt = new Optimize();
     for (const v of vars) {
@@ -100,7 +89,7 @@ async function part2(input) {
     const totalPresses = vars.reduce((a, v) => a.add(v), Int.val(0));
     opt.minimize(totalPresses);
 
-    const result = await opt.check();
+    await opt.check();
 
     const model = opt.model();
     sum += parseInt(model.eval(totalPresses).toString(), 10);
