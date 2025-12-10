@@ -16,7 +16,7 @@ function parseInput(input) {
  * @param {{ x: number; y: number }} b
  */
 function squareArea(a, b) {
-  return Math.abs(a.x - b.x + 1) * Math.abs(a.y - b.y + 1);
+  return (Math.abs(a.x - b.x )+1) * ( Math.abs(a.y - b.y) + 1);
 }
 
 /** @param {number[]} arr */

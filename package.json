@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "canvas": "^3.2.0"
+    "canvas": "^3.2.0",
+    "z3-solver": "^4.15.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
