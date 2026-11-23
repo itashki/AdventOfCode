@@ -36,5 +36,6 @@ else
 end
 
 if not test -f "s.js"
-    cat ../../template.js >s.js
+    cat ../../template.ts >s.ts
+    chmod +x s.ts
 end

@@ -1,17 +1,16 @@
+#!/usr/bin/env bun
 import { readFileSync } from "fs";
 
 const input = readFileSync("./input", "utf-8").trim();
+// const test = readFileSync("./test", "utf-8").trim();
 
-/** @param {string} input */
-function parseInput(input) {
+function parseInput(input:string) {
   return input.split("\n").map((line) => line.split(""));
 }
 
-/** @param {ReturnType<typeof parseInput>} input */
-function part1(input) { }
+function part1(input:ReturnType<typeof parseInput>) { }
 
-/** @param {ReturnType<typeof parseInput>} input */
-function part2(input) { }
+function part2(input:ReturnType<typeof parseInput>) { }
 
 console.log(part1(parseInput(input)));
 console.log(part2(parseInput(input)));

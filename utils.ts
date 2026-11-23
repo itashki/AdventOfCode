@@ -1,10 +1,4 @@
-export const dirs = [
-  { x: -1, y: 0 }, // north
-  { x: 0, y: 1 }, // east
-  { x: 1, y: 0 }, // south
-  { x: 0, y: -1 }, // west
-];
-export const dirsD = [
+export const dirsArr = [
   { x: 0, y: -1 }, // north
   { x: 1, y: -1 }, // north-east
   { x: 1, y: 0 }, // east
@@ -14,7 +8,7 @@ export const dirsD = [
   { x: -1, y: 0 }, // west
   { x: -1, y: -1 }, // north-west
 ];
-export const dirsN = {
+export const dirsObj = {
   north: { x: 0, y: -1 },
   "north-east": { x: 1, y: -1 },
   east: { x: 1, y: 0 },
@@ -24,18 +18,16 @@ export const dirsN = {
   west: { x: -1, y: 0 },
   "north-west": { x: -1, y: -1 },
 };
-/** @param {any[][]} matrix */
-export function printMatrix(matrix) {
+
+export function printMatrix<T>(matrix: T[][]) {
   console.log(matrix.map((row) => row.join("")).join("\n"));
 }
-/**
- * @template T
- * @param {number} rows
- * @param {number} cols
- * @param {T | ((i: number, j: number) => T)} value
- * @returns {T[][]}
- */
-export function getMatrix(rows, cols, value) {
+
+export function getMatrix<T>(
+  rows: number,
+  cols: number,
+  value: T | ((i: number, j: number) => T),
+) {
   if (value instanceof Function) {
     return Array.from({ length: rows }, (_, i) =>
       Array.from({ length: cols }, (_, j) => value(i, j)),
@@ -43,11 +35,8 @@ export function getMatrix(rows, cols, value) {
   }
   return Array.from({ length: rows }, () => Array(cols).fill(value));
 }
-/**
- * @template T
- * @param {T} value
- */
-export function dbg(value) {
+
+export function dbg<T>(value: T) {
   console.log(value);
   return value;
 }
